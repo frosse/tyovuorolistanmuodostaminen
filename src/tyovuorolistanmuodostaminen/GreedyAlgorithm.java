@@ -27,12 +27,12 @@ public class GreedyAlgorithm {
 
     public void setWorkingHours() {
 
-        for (int i = 0; i < 3; i++) {
+        for ( int i = 0; i < 3; i++ ) {
             HashMap<String, HashSet<Worker>> dataSet = new HashMap<>();
-            for (String s : days) {
-                dataSet.put(s, new HashSet<Worker>());
+            for ( String s : days ) {
+                dataSet.put( s, new HashSet<Worker>() );
             }
-            allData.add(dataSet);
+            allData.add( dataSet );
         }
     }
 
@@ -41,49 +41,48 @@ public class GreedyAlgorithm {
         workers = new ArrayList<>();
 
         // Sekoitetaan työt, jotta saadaan vaihtelua iteraatioihin
-        Collections.shuffle(joblist.jobs);
-        for(Job job: joblist.jobs) {
+        Collections.shuffle( joblist.getJobs() );
+        for ( Job job: joblist.getJobs() ) {
 
             boolean found = false;
             while( !found ) {
                 // Järjestetään työntekijät tapahtuu työajan mukaan
-                Collections.sort(workers);
-                for (Worker worker : workers) {
-                    if(!worker.isWorkTimeCapped(job.duration) && !worker.isHolidaysOverLimit()) {
+                Collections.sort( workers );
+                for ( Worker worker : workers ) {
+                    if ( !worker.isWorkTimeCapped( job.getDuration() ) && !worker.isHolidaysOverLimit() ) {
 
-                        if ( allData.get ( job.week-1 ).get ( job.day ).add ( worker ) ) {
+                        if ( allData.get ( job.getWeek()-1 ).get ( job.getDay() ).add ( worker ) ) {
 
-                            worker.addWorkTime ( job.duration );
+                            worker.addWorkTime ( job.getDuration() );
                             found = true;
                             break;
                         }
                     }
                 }
-                if(!found) {workers.add(new Worker()); }
+                if ( !found ) { workers.add(new Worker()); }
             }
         }
 
-        if ( print || workers.size() < 77) { printWorkers(); }
+        if ( print || workers.size() < 77 ) { printWorkers(); }
 
-        System.out.println("Workers needed: "+ workers.size());
-        System.out.println("");
+        System.out.println( "Workers needed: "+ workers.size() + "\n" );
     }
 
     public void printWorkers() {
-        for (Worker w : workers) {
-            System.out.println(w);
+        for ( Worker w : workers ) {
+            System.out.println( w );
         }
     }
 
     public void printIfErrors() {
-        for (Worker w : workers) {
-            if (w.workTime > 7020 || w.workDays > 16) {
-                System.out.println(w);
+        for ( Worker w : workers ) {
+            if ( w.workTime > 7020 || w.workDays > 16 ) {
+                System.out.println( w );
             }
         }
     }
 
-    public void setPrint(boolean print) {
+    public void setPrint( boolean print ) {
         this.print = print;
     }
 }

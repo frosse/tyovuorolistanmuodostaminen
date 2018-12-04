@@ -9,6 +9,7 @@ public class Job {
     String start;
     String end;
 
+
     // Oletetaan, että konstruktorissa tulee aina tarvittava data
     public Job(String line) {
         String s[] = line.split("\t");
@@ -19,5 +20,17 @@ public class Job {
         this.duration = Integer.parseInt(s[3]);
         this.start = s[4];
         this.end = s[5];
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public String getDay() {
+        return day;
+    }
+
+    public int getWeek() {
+        return week;
     }
 }

@@ -21,18 +21,18 @@ public class Main {
     public static void main(String[] args) {
         GreedyAlgorithm gd;
 
-        for (int i = 0; i < 200; i++) {
+        for ( int i = 0; i < 200; i++ ) {
             gd = new GreedyAlgorithm();
 
             // Jos loopataan vain kerran niin aseta True
-            gd.setPrint(false);
+            gd.setPrint( false );
 
             gd.setWorkingHours();
 
             try {
                 gd.findSolution();
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
+            } catch ( IOException e ) {
+                System.out.println( e.getMessage() );
             }
 
         }

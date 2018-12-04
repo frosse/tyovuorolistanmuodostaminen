@@ -15,7 +15,7 @@ public class Worker implements Comparable<Worker> {
     }
 
     // Lisätään työaikaa ja samalla lisätään yksi työpäivä
-    public void addWorkTime(int time) {
+    public void addWorkTime( int time ) {
         workTime += time;
         workDays++;
     }
@@ -25,7 +25,7 @@ public class Worker implements Comparable<Worker> {
         return workDays >= 16;
     }
 
-    public boolean isWorkTimeCapped(int duration) {
+    public boolean isWorkTimeCapped( int duration ) {
         return workTime + duration >= workHourCap;
     }
 
@@ -35,7 +35,7 @@ public class Worker implements Comparable<Worker> {
     }
 
     @Override
-    public int compareTo(Worker w) {
+    public int compareTo( Worker w ) {
 
         if ( this.workTime > w.workTime ) { return 1; }
         if ( this.workTime < w.workTime ) { return -1; }
